@@ -11,8 +11,8 @@ public class MovementSM : StateMachine
 
     private void Awake()
     {
-        idleState = new IdlePlayerState(this);
-        movingState = new MovingPlayerState(this);
+        idleState = new IdlePlayerState(this, gameObject.GetComponent<AvarielMain>());
+        movingState = new MovingPlayerState(this, gameObject.GetComponent<AvarielMain>());
     }
 
     protected override BaseState GetInitialState()

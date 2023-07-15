@@ -9,7 +9,7 @@ public class IdlePlayerState : BaseState
     private MovementSM _sm;
     public InputAction move;
 
-    public IdlePlayerState(MovementSM stateMachine) : base("Idle", stateMachine) {_sm = stateMachine;}
+    public IdlePlayerState(MovementSM stateMachine, AvarielMain avarielMain) : base("Idle", stateMachine, avarielMain) {_sm = stateMachine;}
 
     public override void Enter()
     {
@@ -19,7 +19,7 @@ public class IdlePlayerState : BaseState
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        stateMachine.ChangeState(_sm.movingState);
+        if(moveAction.triggered) stateMachine.ChangeState(_sm.movingState);
     }
 
 }
