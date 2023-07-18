@@ -28,7 +28,7 @@ public class StateMachine : MonoBehaviour
     public void ChangeState(BaseState newState)
     {
         currentState.Exit();
-
+        Debug.Log("Exiting: " + currentState + "/// Entering: " + newState);
         currentState = newState;
         currentState.Enter();
     }

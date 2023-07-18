@@ -20,6 +20,9 @@ public class IdlePlayerState : BaseState
     {
         base.UpdateLogic();
         if(moveAction.triggered) stateMachine.ChangeState(_sm.movingState);
+        
+        //State change logic -> Falling
+        if(fallAction.triggered) stateMachine.ChangeState(_sm.fallingIdleState);
     }
 
 }
