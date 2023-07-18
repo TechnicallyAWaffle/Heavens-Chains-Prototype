@@ -25,6 +25,10 @@ public class MovingPlayerState : BaseState
         base.UpdateLogic();
         input = moveAction.ReadValue<Vector2>();
         if(input.sqrMagnitude == 0f) stateMachine.ChangeState(_sm.idleState);
+
+        //State change logic -> Falling
+        if(fallAction.triggered) stateMachine.ChangeState(_sm.fallingMovingState);
+        
     }
 
     public override void UpdatePhysics()

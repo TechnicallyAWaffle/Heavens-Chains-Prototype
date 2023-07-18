@@ -541,8 +541,8 @@ GameObject:
   - component: {fileID: 1883438854}
   - component: {fileID: 1883438853}
   - component: {fileID: 1883438855}
-  - component: {fileID: 1883438856}
   - component: {fileID: 1883438857}
+  - component: {fileID: 1883438856}
   m_Layer: 0
   m_Name: Avariel
   m_TagString: Untagged

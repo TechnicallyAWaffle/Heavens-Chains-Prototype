@@ -8,7 +8,7 @@ public class BaseState
     public string name;
     protected StateMachine stateMachine;
     public InputAction moveAction;
-    private AvarielMain avarielTest;
+    public InputAction fallAction;
 
     protected Vector2 input;
     protected Rigidbody2D rb;
@@ -20,6 +20,7 @@ public class BaseState
 
         rb = avarielMain.gameObject.GetComponent<Rigidbody2D>();
         moveAction = avarielMain.playerInput.actions["Move"];
+        fallAction = avarielMain.playerInput.actions["Fall"];
     }
 
     public virtual void Enter() { }
