@@ -11,9 +11,9 @@ public class IdlePlayerState : BaseState
 
     public IdlePlayerState(MovementSM stateMachine, AvarielMain avarielMain) : base("Idle", stateMachine, avarielMain) {_sm = stateMachine;}
 
-    public override void Enter()
+    public override void Enter(string previousState)
     {
-        base.Enter();
+        base.Enter(previousState);
     }
 
     public override void UpdateLogic()
@@ -23,6 +23,9 @@ public class IdlePlayerState : BaseState
         
         //State change logic -> Falling
         if(fallAction.triggered) stateMachine.ChangeState(_sm.fallingIdleState);
+
+        //State change logic -> Dashing
+        if(dashAction.triggered) stateMachine.ChangeState(_sm.dashingState);
     }
 
 }

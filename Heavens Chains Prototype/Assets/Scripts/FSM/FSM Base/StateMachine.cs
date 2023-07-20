@@ -10,7 +10,7 @@ public class StateMachine : MonoBehaviour
     {
         currentState = GetInitialState();
         if (currentState != null)
-            currentState.Enter();
+            currentState.Enter(null);
     }
 
     void Update()
@@ -29,8 +29,10 @@ public class StateMachine : MonoBehaviour
     {
         currentState.Exit();
         Debug.Log("Exiting: " + currentState + "/// Entering: " + newState);
+        newState.Enter(currentState.name);
         currentState = newState;
-        currentState.Enter();
+        
+        
     }
 
     protected virtual BaseState GetInitialState()

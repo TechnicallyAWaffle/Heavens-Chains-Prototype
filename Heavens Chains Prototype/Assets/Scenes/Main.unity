@@ -734,4 +734,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
-  moveSpeed: 3000
+  moveSpeed: 7500
+  dashPower: 100

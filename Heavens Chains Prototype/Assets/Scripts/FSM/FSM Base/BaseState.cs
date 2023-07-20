@@ -9,6 +9,7 @@ public class BaseState
     protected StateMachine stateMachine;
     public InputAction moveAction;
     public InputAction fallAction;
+    public InputAction dashAction;
 
     protected Vector2 input;
     protected Rigidbody2D rb;
@@ -21,9 +22,10 @@ public class BaseState
         rb = avarielMain.gameObject.GetComponent<Rigidbody2D>();
         moveAction = avarielMain.playerInput.actions["Move"];
         fallAction = avarielMain.playerInput.actions["Fall"];
+        dashAction = avarielMain.playerInput.actions["Dash"];
     }
 
-    public virtual void Enter() { }
+    public virtual void Enter(string previousState) {}
     public virtual void UpdateLogic() { }
     public virtual void UpdatePhysics() { }
     public virtual void Exit() { }

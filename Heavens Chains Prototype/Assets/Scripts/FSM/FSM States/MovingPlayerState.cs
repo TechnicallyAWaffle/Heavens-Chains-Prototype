@@ -15,9 +15,9 @@ public class MovingPlayerState : BaseState
     this.moveSpeed = avarielMain.moveSpeed;
     }
 
-    public override void Enter()
+    public override void Enter(string previousState)
     {
-        base.Enter();
+        base.Enter(previousState);
     }
 
     public override void UpdateLogic()
@@ -28,6 +28,9 @@ public class MovingPlayerState : BaseState
 
         //State change logic -> Falling
         if(fallAction.triggered) stateMachine.ChangeState(_sm.fallingMovingState);
+        
+        //State change logic -> Dashing
+        if(dashAction.triggered) stateMachine.ChangeState(_sm.dashingState);
         
     }
 

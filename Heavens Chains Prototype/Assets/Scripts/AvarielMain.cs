@@ -9,7 +9,8 @@ public class AvarielMain : MonoBehaviour
     public PlayerInput playerInput;
 
     public float moveSpeed = 10;
-   
+    public float dashPower = 100;
+
     // Start is called before the first frame update
     void Awake()
     {

@@ -9,16 +9,16 @@ public class FallingIdlePlayerState : BaseState
     private MovementSM _sm;
     private float moveSpeed;
 
-    public FallingIdlePlayerState(MovementSM stateMachine, AvarielMain avarielMain) : base("Moving", stateMachine, avarielMain)
+    public FallingIdlePlayerState(MovementSM stateMachine, AvarielMain avarielMain) : base("Falling-Idle", stateMachine, avarielMain)
     {
     _sm = stateMachine;
     this.moveSpeed = avarielMain.moveSpeed;
     }
 
-    public override void Enter()
+    public override void Enter(string previousState)
     {
-        rb.gravityScale = 1;
-        base.Enter();
+        rb.gravityScale = 10;
+        base.Enter(previousState);
     }
 
     public override void UpdateLogic()
