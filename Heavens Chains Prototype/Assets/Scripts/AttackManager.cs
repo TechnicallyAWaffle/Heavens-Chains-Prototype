@@ -52,12 +52,12 @@ public class AttackManager : MonoBehaviour
     //collider = entity that called this method
     public void onEntityCollide(CustomTag collider, GameObject recieverEntity, GameObject senderEntity, float damage, float strength)
     {
-        collidee = entity.GetComponent<CustomTag>();
+        collidee = recieverEntity.GetComponent<CustomTag>();
         if(collidee.HasTag("Player"))
         {
             Vector2 direction = (recieverEntity.transform.position - senderEntity.transform.position).normalized;
             recieverEntity.GetComponent<Rigidbody2D>().AddForce(direction * strength, ForceMode2D.Impulse);
-            recieverEntity.GetComponent<AvarielMain>().stunPlayer(0.75f);
+            //recieverEntity.GetComponent<AvarielMain>().stunPlayer(0.75f);
             Debug.Log("Player Collision" + recieverEntity.name);
             //entity.GetComponent<AvarielMain>().updatePlayerCurrentRadiance(-1 * (damage));
         }
@@ -65,11 +65,11 @@ public class AttackManager : MonoBehaviour
         {   
             Vector2 direction = (recieverEntity.transform.position - senderEntity.transform.position).normalized;
             recieverEntity.GetComponent<Rigidbody2D>().AddForce(direction * strength, ForceMode2D.Impulse);
-            string scriptName = recieverEntity.GetComponent<EnemyConfiguration>().enemyName;
-                if(scriptName == "GuardianAngel")
+            //string scriptName = recieverEntity.GetComponent<EnemyConfiguration>().enemyName;
+                /*if(scriptName == "GuardianAngel")
                 {
-                    recieverEntity.GetComponent<GuardianAngelBT>().updateEnemyCurrentRadiance(-damage);
-                }
+                    //recieverEntity.GetComponent<GuardianAngelBT>().updateEnemyCurrentRadiance(-damage);
+                }*/
         }
         else
         {

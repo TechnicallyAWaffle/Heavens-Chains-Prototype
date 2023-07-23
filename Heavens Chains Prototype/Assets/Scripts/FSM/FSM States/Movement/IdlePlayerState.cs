@@ -7,7 +7,6 @@ public class IdlePlayerState : AvarielMain
 {
 
     private MovementSM _sm;
-    public InputAction move;
 
     public void Setup(MovementSM stateMachine, string stateName) 
     {
