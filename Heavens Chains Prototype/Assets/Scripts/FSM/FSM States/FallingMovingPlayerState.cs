@@ -3,42 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FallingMovingPlayerState : BaseState
+public class FallingMovingPlayerState : AvarielMain
 {
     
     private MovementSM _sm;
-    private float moveSpeed;
+    private float counter;
 
-    public FallingMovingPlayerState(MovementSM stateMachine, AvarielMain avarielMain) : base("Moving", stateMachine, avarielMain)
+    public void Setup(MovementSM stateMachine, string stateName)
     {
-    _sm = stateMachine;
-    this.moveSpeed = avarielMain.moveSpeed;
+        _sm = stateMachine;
+        this.stateName = stateName;
     }
 
-    public override void Enter()
+    public override void Enter(string previousState)
     {
-        rb.gravityScale = 1;
-        base.Enter();
+        rb.gravityScale = 10;
+        base.Enter(previousState);
+        counter = 0;
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        input = moveAction.ReadValue<Vector2>();
-        if(input.sqrMagnitude == 0f) stateMachine.ChangeState(_sm.fallingIdleState);
+        input = playerControls.moveAction.ReadValue<Vector2>();
+        if(input.sqrMagnitude == 0f) _sm.ChangeState(_sm.fallingIdleState);
 
         //State change logic -> Moving
-        if(fallAction.triggered) stateMachine.ChangeState(_sm.movingState);
+        if(playerControls.fallAction.triggered) _sm.ChangeState(_sm.movingState);
+
+        //State change logic -> Gliding
+        if(playerControls.dashAction.triggered) _sm.ChangeState(_sm.glidingState);
     }
 
     public override void UpdatePhysics()
     {
-        rb.AddForce(input * (moveSpeed / 5) * Time.deltaTime);
+        if(counter <= 0.6) 
+        {
+            counter += Time.deltaTime;
+            Debug.Log(moveSpeed);
+            moveSpeed -= counter * 50;
+            rb.AddForce(input * moveSpeed * Time.deltaTime);
+        }
+        else
+            rb.AddForce(input * moveSpeed * Time.deltaTime);
         base.UpdatePhysics();
     }
 
     public override void Exit()
     {
         rb.gravityScale = 0;
+        moveSpeed = defaultMoveSpeed;
     }
 }

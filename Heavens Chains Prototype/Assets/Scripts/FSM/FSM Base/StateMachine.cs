@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    BaseState currentState;
+    AvarielMain currentState;
 
     void Start()
     {
         currentState = GetInitialState();
         if (currentState != null)
-            currentState.Enter();
+            currentState.Enter(null);
     }
 
     void Update()
@@ -25,22 +25,22 @@ public class StateMachine : MonoBehaviour
             currentState.UpdatePhysics();
     }
 
-    public void ChangeState(BaseState newState)
+    public void ChangeState(AvarielMain newState)
     {
         currentState.Exit();
-        Debug.Log("Exiting: " + currentState + "/// Entering: " + newState);
+        Debug.Log("Exiting: " + currentState.stateName + "/// Entering: " + newState.stateName);
+        newState.Enter(currentState.stateName);
         currentState = newState;
-        currentState.Enter();
     }
 
-    protected virtual BaseState GetInitialState()
+    protected virtual AvarielMain GetInitialState()
     {
         return null;
     }
 
     private void OnGUI()
     {
-        string content = currentState != null ? currentState.name : "(no current state)";
+        string content = currentState != null ? currentState.stateName : "(no current state)";
         GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
     }
 
