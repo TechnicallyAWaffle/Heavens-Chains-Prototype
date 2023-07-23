@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FallingIdlePlayerState : BaseState
+public class FallingIdlePlayerState : AvarielMain
 {
     
     private MovementSM _sm;
-    private float moveSpeed;
 
-    public FallingIdlePlayerState(MovementSM stateMachine, AvarielMain avarielMain) : base("Falling-Idle", stateMachine, avarielMain)
+    public void Setup(MovementSM stateMachine, string stateName)
     {
-    _sm = stateMachine;
-    this.moveSpeed = avarielMain.moveSpeed;
+        _sm = stateMachine;
+        this.stateName = stateName;
     }
 
     public override void Enter(string previousState)
@@ -24,8 +23,15 @@ public class FallingIdlePlayerState : BaseState
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        if(moveAction.triggered) stateMachine.ChangeState(_sm.fallingMovingState);
-        if(fallAction.triggered) stateMachine.ChangeState(_sm.idleState);
+        
+        //State change logic -> Falling-Moving
+        if(playerControls.moveAction.triggered) _sm.ChangeState(_sm.fallingMovingState);
+
+        //State change logic -> Idle
+        if(playerControls.fallAction.triggered) _sm.ChangeState(_sm.idleState);
+
+        //State change logic -> Gliding
+        if(playerControls.dashAction.triggered) _sm.ChangeState(_sm.glidingState);
     }
 
     public override void UpdatePhysics()

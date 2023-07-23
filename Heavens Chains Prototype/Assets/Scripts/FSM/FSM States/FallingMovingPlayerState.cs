@@ -3,51 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FallingMovingPlayerState : BaseState
+public class FallingMovingPlayerState : AvarielMain
 {
     
     private MovementSM _sm;
-    private float moveSpeed;
-    private int counter;
+    private float counter;
 
-    public FallingMovingPlayerState(MovementSM stateMachine, AvarielMain avarielMain) : base("Falling-Moving", stateMachine, avarielMain)
+    public void Setup(MovementSM stateMachine, string stateName)
     {
-    _sm = stateMachine;
-    this.moveSpeed = avarielMain.moveSpeed;
+        _sm = stateMachine;
+        this.stateName = stateName;
     }
 
     public override void Enter(string previousState)
     {
         rb.gravityScale = 10;
         base.Enter(previousState);
-        counter = 1;
+        counter = 0;
     }
 
     public override void UpdateLogic()
     {
-        counter++;
         base.UpdateLogic();
-        input = moveAction.ReadValue<Vector2>();
-        if(input.sqrMagnitude == 0f) stateMachine.ChangeState(_sm.fallingIdleState);
+        input = playerControls.moveAction.ReadValue<Vector2>();
+        if(input.sqrMagnitude == 0f) _sm.ChangeState(_sm.fallingIdleState);
 
         //State change logic -> Moving
-        if(fallAction.triggered) stateMachine.ChangeState(_sm.movingState);
+        if(playerControls.fallAction.triggered) _sm.ChangeState(_sm.movingState);
+
+        //State change logic -> Gliding
+        if(playerControls.dashAction.triggered) _sm.ChangeState(_sm.glidingState);
     }
 
     public override void UpdatePhysics()
     {
-        Debug.Log(counter);
-        if(counter <= 200) 
+        if(counter <= 0.6) 
         {
-            rb.AddForce(input * (moveSpeed - (counter * 25)) * Time.deltaTime);
+            counter += Time.deltaTime;
+            Debug.Log(moveSpeed);
+            moveSpeed -= counter * 50;
+            rb.AddForce(input * moveSpeed * Time.deltaTime);
         }
         else
-            rb.AddForce(input * 2500 * Time.deltaTime);
+            rb.AddForce(input * moveSpeed * Time.deltaTime);
         base.UpdatePhysics();
     }
 
     public override void Exit()
     {
         rb.gravityScale = 0;
+        moveSpeed = defaultMoveSpeed;
     }
 }

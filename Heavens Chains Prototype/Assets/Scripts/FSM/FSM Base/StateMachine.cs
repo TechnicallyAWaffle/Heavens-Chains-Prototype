@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    BaseState currentState;
+    AvarielMain currentState;
 
     void Start()
     {
@@ -25,24 +25,22 @@ public class StateMachine : MonoBehaviour
             currentState.UpdatePhysics();
     }
 
-    public void ChangeState(BaseState newState)
+    public void ChangeState(AvarielMain newState)
     {
         currentState.Exit();
-        Debug.Log("Exiting: " + currentState + "/// Entering: " + newState);
-        newState.Enter(currentState.name);
+        Debug.Log("Exiting: " + currentState.stateName + "/// Entering: " + newState.stateName);
+        newState.Enter(currentState.stateName);
         currentState = newState;
-        
-        
     }
 
-    protected virtual BaseState GetInitialState()
+    protected virtual AvarielMain GetInitialState()
     {
         return null;
     }
 
     private void OnGUI()
     {
-        string content = currentState != null ? currentState.name : "(no current state)";
+        string content = currentState != null ? currentState.stateName : "(no current state)";
         GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
     }
 

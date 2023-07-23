@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DashingPlayerState : AvarielMain
+public class GlidingPlayerState : AvarielMain
 {
     
     private MovementSM _sm;
-    private float counter;
+    //private float counter;
     private string previousState;
 
     public void Setup(MovementSM stateMachine, string stateName)
@@ -18,21 +18,19 @@ public class DashingPlayerState : AvarielMain
 
     public override void Enter(string previousState)
     {
-        counter = 0;
+        //counter = 0;
         this.previousState = previousState;
-        input = playerControls.moveAction.ReadValue<Vector2>();
-        rb.velocity = new Vector2(input.x * dashPower, input.y * dashPower);
+        float mouseAngle = mousePos.getMouseAngle();
+        Debug.Log("TEST: " + mouseAngle);
+        rb.velocity = new Vector2(Mathf.Cos(mouseAngle) * glidePower, Mathf.Sin(mouseAngle) * glidePower);
+        rb.gravityScale = 0;
+
         base.Enter(previousState);
     }
 
     public override void UpdateLogic()
     {
-        if(counter > 0.25)
-        {
-            if(previousState == "Moving") _sm.ChangeState(_sm.movingState);
-            else if(previousState == "Idle") _sm.ChangeState(_sm.idleState);
-        }
-        counter += Time.deltaTime;
+        
     }
 
     public override void UpdatePhysics()

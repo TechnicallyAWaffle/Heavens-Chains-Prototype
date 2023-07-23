@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovementSM : StateMachine
 {
+
     [HideInInspector]
     public IdlePlayerState idleState;
     [HideInInspector]
@@ -14,17 +15,32 @@ public class MovementSM : StateMachine
     public FallingMovingPlayerState fallingMovingState;
     [HideInInspector]
     public DashingPlayerState dashingState;
+    [HideInInspector]
+    public GlidingPlayerState glidingState;
 
     private void Awake()
     {
-        idleState = new IdlePlayerState(this, gameObject.GetComponent<AvarielMain>());
-        movingState = new MovingPlayerState(this, gameObject.GetComponent<AvarielMain>());
-        fallingIdleState = new FallingIdlePlayerState(this, gameObject.GetComponent<AvarielMain>());
-        fallingMovingState = new FallingMovingPlayerState(this, gameObject.GetComponent<AvarielMain>());
-        dashingState = new DashingPlayerState(this, gameObject.GetComponent<AvarielMain>());
-    }
+        GameObject avariel = gameObject;
+        idleState = avariel.AddComponent<IdlePlayerState>();
+        idleState.Setup(this, "Idle");
 
-    protected override BaseState GetInitialState()
+        movingState = avariel.AddComponent<MovingPlayerState>();
+        movingState.Setup(this, "Moving");
+
+        fallingIdleState = avariel.AddComponent<FallingIdlePlayerState>();
+        fallingIdleState.Setup(this, "Falling-Idle");
+
+        fallingMovingState = avariel.AddComponent<FallingMovingPlayerState>();
+        fallingMovingState.Setup(this, "Falling-Moving");
+
+        dashingState = avariel.AddComponent<DashingPlayerState>();
+        dashingState.Setup(this, "Dashing");
+
+        glidingState = avariel.AddComponent<GlidingPlayerState>();
+        glidingState.Setup(this, "Gliding");
+        }
+
+    protected override AvarielMain GetInitialState()
     {
         return idleState;
     }
