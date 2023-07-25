@@ -35,7 +35,7 @@ public class AttackManager : MonoBehaviour
 
     public void RunDirectionalAttackAnimation(string trigger, string direction, GameObject activeWeapon)
     {
-        Debug.Log("This is running");
+       Debug.Log("This is running");
        animator.SetTrigger(trigger);
        activeWeaponScript = activeWeapon.name + "Collision";
        activeWeapon.GetComponent(activeWeaponScript).SendMessage((activeWeapon.name + direction + "Attack"));

@@ -40,6 +40,7 @@ public class Hurtbox : MonoBehaviour
         }
         CustomTag hitHitboxEntityTag = hitHitboxParent.GetComponent<CustomTag>();
         CustomTag hitHitboxHitboxesTag = hitHitbox.gameObject.gameObject.GetComponent<CustomTag>();
+        GameObject hurtboxParentEntity = hurtbox.gameObject.gameObject.gameObject;
         if(entityInBlacklist == false && !hitHitboxEntityTag.HasTag("Player"))
         {
             blacklist.Add(hitHitboxParent);
@@ -50,14 +51,14 @@ public class Hurtbox : MonoBehaviour
               // Debug.Log("Entity Collision" + entityCollisionData.gameObject.name);
                 hurtbox.gameObject.gameObject.gameObject.GetComponent<AttackManager>()
                 .onEntityCollide(gameObject.GetComponent<CustomTag>(), 
-                entityCollisionData.collider.gameObject, entityCollisionData.otherCollider.transform.parent.gameObject, swordDamage, swordStrength);
+                hitHitboxParent, hurtboxParentEntity, damage * hitHitbox.GetComponent<Hitbox>().getDamageMultiplier, strength * hitHitbox.GetComponent<Hitbox>().getStrengthMultiplier);
             }
             else if(hitHitboxHitboxesTag.HasTag("Weapon"))
             {
                 //Debug.Log("Weapon Collision" + entityCollisionData.gameObject.name);
-                entityCollisionData.gameObject.GetComponent<AttackManager>()
-                .onWeaponCollide(gameObject.GetComponent<CustomTag>(), 
-                entityCollisionData.collider.gameObject, entityCollisionData.otherCollider.transform.parent.gameObject, swordDamage, (swordStrength / 2));
+                hurtbox.gameObject.gameObject.gameObject.GetComponent<AttackManager>()
+                .onEntityCollide(gameObject.GetComponent<CustomTag>(), 
+                hitHitboxParent, hurtboxParentEntity, damage * hitHitbox.GetComponent<Hitbox>().getDamageMultiplier, strength * hitHitbox.GetComponent<Hitbox>().getStrengthMultiplier);
             }
             else 
             {

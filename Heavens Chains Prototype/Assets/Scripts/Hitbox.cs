@@ -10,5 +10,5 @@ public class Hitbox : MonoBehaviour
 
     public float getDamageMultiplier(){ return damageMultiplier; }
 
-    public float getstrengthMultiplier(){ return strengthMultiplier; }
+    public float getStrengthMultiplier(){ return strengthMultiplier; }
 }
