@@ -15,7 +15,7 @@ public class Hurtbox : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D hitHitbox)
     {
-        GameObject hitHitboxParent;
+        GameObject hitHitboxParent = null;
         bool entityInBlacklist = false;
         foreach(GameObject entity in blacklist)
         {
@@ -38,8 +38,8 @@ public class Hurtbox : MonoBehaviour
                 hitHitboxParent = hitHitbox.gameObject.gameObject.gameObject.gameObject;
             }
         }
-        hitHitboxEntityTag = hitHitboxParent.GetComponent<CustomTag>();
-        hitHitboxHitboxesTag = hitHitbox.gameObject.gameObject.GetComponent<CustomTag>();
+        CustomTag hitHitboxEntityTag = hitHitboxParent.GetComponent<CustomTag>();
+        CustomTag hitHitboxHitboxesTag = hitHitbox.gameObject.gameObject.GetComponent<CustomTag>();
         if(entityInBlacklist == false && !hitHitboxEntityTag.HasTag("Player"))
         {
             blacklist.Add(hitHitboxParent);
