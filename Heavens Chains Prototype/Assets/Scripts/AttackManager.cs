@@ -77,14 +77,14 @@ public class AttackManager : MonoBehaviour
         }
     }
 
-    public void onWeaponCollide(CustomTag collider, GameObject entity, GameObject senderEntity, float damage, float strength)
+    public void onWeaponCollide(CustomTag collider, GameObject recieverEntity, GameObject senderEntity, float damage, float strength)
     {
-        collidee = entity.GetComponent<CustomTag>();
+        collidee = recieverEntity.GetComponent<CustomTag>();
         if(collidee.HasTag("Divine Weapon"))
         {
             Debug.Log("Clash");
-            Vector2 direction = (entity.transform.position - senderEntity.transform.position).normalized;
-            entity.transform.parent.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * strength, ForceMode2D.Impulse);
+            Vector2 direction = (recieverEntity.transform.position - senderEntity.transform.position).normalized;
+            recieverEntity.GetComponent<Rigidbody2D>().AddForce(direction * strength, ForceMode2D.Impulse);
         }
         if(collidee.HasTag("Mechanical Weapon"))
         {   
