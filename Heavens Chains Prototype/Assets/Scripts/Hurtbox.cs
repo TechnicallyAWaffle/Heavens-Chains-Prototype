@@ -21,27 +21,28 @@ public class Hurtbox : MonoBehaviour
         {
             if(hitHitbox.gameObject.gameObject.GetComponent<CustomTag>().HasTag("Divine Weapon"))
             {
-                if(entity == hitHitbox.gameObject.gameObject.gameObject.gameObject)
+                hitHitboxParentEntity = hitHitbox.gameObject.gameObject.gameObject.gameObject;
+                if(entity == hitHitboxParentEntity)
                 {
                 entityInBlacklist = true;
                 break;
                 }
-                hitHitboxParentEntity = hitHitbox.gameObject.gameObject.gameObject.gameObject;
+                
             }
             else if(hitHitbox.gameObject.gameObject.GetComponent<CustomTag>().HasTag("Entity"))
             {
-                if(entity == hitHitbox.gameObject.gameObject.gameObject)
+                hitHitboxParentEntity = hitHitbox.gameObject.gameObject.gameObject;
+                if(entity == hitHitboxParentEntity)
                 {
                 entityInBlacklist = true;
                 break;
                 }
-                hitHitboxParentEntity = hitHitbox.gameObject.gameObject.gameObject;
             }
         }
         CustomTag hitHitboxEntityTag = hitHitboxParentEntity.GetComponent<CustomTag>();
         CustomTag hitHitboxHitboxesTag = hitHitbox.gameObject.gameObject.GetComponent<CustomTag>();
-        GameObject hurtboxParentEntity = hurtbox.gameObject.gameObject.gameObject.gameObject;
-        if(entityInBlacklist == false && !hitHitboxEntityTag.HasTag("Player"))
+        GameObject hurtboxParentEntity = hurtbox.gameObject.gameObject.gameObject;
+        if(entityInBlacklist == false && hurtboxParentEntity != hitHitboxParentEntity)
         {
             blacklist.Add(hitHitboxParentEntity);
             //Debug.Log("Added " + entityCollisionData.gameObject + " to blacklist");
