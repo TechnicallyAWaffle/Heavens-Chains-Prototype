@@ -15,7 +15,7 @@ public class RangedAttackingPlayerState : AvarielMain
 
     public override void Enter(string previousState)
     {
-        counter = 0;
+        
         base.Enter(previousState);
     }
 

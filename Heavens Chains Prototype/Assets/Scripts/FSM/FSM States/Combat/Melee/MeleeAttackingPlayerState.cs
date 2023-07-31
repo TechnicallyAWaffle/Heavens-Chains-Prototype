@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeAttackingPlayerState : AvarielMain
 {
     private CombatSM _sm;
-    private float count;
+    private float counter;
 
     public void Setup(CombatSM stateMachine, string stateName) 
     {
@@ -21,11 +21,12 @@ public class MeleeAttackingPlayerState : AvarielMain
 
     public override void UpdateLogic()
     {
-        count = 0;
-        while (count < 5)
+        if (counter > 0.25)
         {
-            count += Time.deltaTime;
+            _sm.ChangeState(_sm.meleeIdleState);
+            counter = 0;
+            
         }
-        _sm.ChangeState(_sm.meleeIdleState);
+        counter += Time.deltaTime;
     }
 }
