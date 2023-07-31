@@ -12,6 +12,8 @@ public class AvarielMain : MonoBehaviour
         public InputAction moveAction; // Default: WASD
         public InputAction fallAction; // Default: Shift
         public InputAction dashAction; // Default: Space
+        public InputAction swapWeaponAction; //Default 1,2, etc
+        public InputAction attackAction; //Default LMB
     }
     protected playerActions playerControls;
 
@@ -21,6 +23,8 @@ public class AvarielMain : MonoBehaviour
     protected float glidePower = 50;
     protected static float defaultMoveSpeed = 7500;
     protected bool flipped = false;
+    protected List<GameObject> weaponList = new List<GameObject>();
+    protected GameObject activeWeapon;
     
     //State machine stuff
     protected Vector2 input;
@@ -94,6 +98,8 @@ public class AvarielMain : MonoBehaviour
         playerControls.moveAction = playerInput.actions["Move"];
         playerControls.fallAction = playerInput.actions["Fall"];
         playerControls.dashAction = playerInput.actions["Dash"];
+        playerControls.swapWeaponAction = playerInput.actions["Swap Weapon"];
+        playerControls.attackAction = playerInput.actions["Attack"];
     }
 
     // Update is called once per frame
@@ -106,6 +112,18 @@ public class AvarielMain : MonoBehaviour
         } else {
             mousePos.x = mouseRelative.x;
             mousePos.y = mouseRelative.y;
+        }
+    }
+
+    public GameObject SwapWeapon(string inputName)
+    {
+        if (inputName == activeWeapon.name)
+        {
+            return null;
+        }
+        else
+        {
+            return weaponList[0];
         }
     }
 

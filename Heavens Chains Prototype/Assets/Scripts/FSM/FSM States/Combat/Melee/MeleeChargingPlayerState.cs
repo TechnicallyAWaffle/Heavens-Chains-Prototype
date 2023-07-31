@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MeleeChargingPlayerState : AvarielMain
 {
@@ -15,8 +16,24 @@ public class MeleeChargingPlayerState : AvarielMain
     public override void Enter(string previousState)
     {
         base.Enter(previousState);
+        playerControls.swapWeaponAction.performed += SwapWeaponCallback; //fires function something;
     }
 
+    //Where weapon swaps happen
+    public void SwapWeaponCallback(InputAction.CallbackContext context)
+    {
+        Debug.Log(context.control.name + 1);
+        GameObject weaponEquipped = SwapWeapon(context.control.name);
+        if (weaponEquipped && weaponEquipped.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
+            {
+                _sm.ChangeState(_sm.rangedDeployState);
+            }
+        else if (weaponEquipped && weaponEquipped.GetComponent<CustomTag>().HasTag("Divine Weapon"))
+            {
+                _sm.ChangeState(_sm.meleeIdleState);
+            }
+    }
+    
     public override void UpdateLogic()
     {
         base.UpdateLogic();
@@ -27,7 +44,7 @@ public class MeleeChargingPlayerState : AvarielMain
         if(playerControls.dashAction.triggered) _sm.ChangeState(_sm.meleeIdleState);
 
         //State change logic -> swap to ranged
-        if(playerControls.swapWeaponAction.triggered) 
+        /*if(playerControls.swapWeaponAction.triggered) 
         {
             //value is the weapon placement in equipment list
             int value = playerControls.swapWeaponAction.ReadValue<int>();
@@ -42,8 +59,13 @@ public class MeleeChargingPlayerState : AvarielMain
             {
                 _sm.ChangeState(_sm.meleeIdleState);
             }
-        }
+        }*/
         
 
+    }
+
+    public override void Exit()
+    {
+        playerControls.swapWeaponAction.performed -= SwapWeaponCallback;
     }
 }

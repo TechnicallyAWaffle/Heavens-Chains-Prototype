@@ -17,6 +17,7 @@ public class StateMachine : MonoBehaviour
     {
         if (currentState != null)
             currentState.UpdateLogic();
+        Debug.Log(currentState.name);
     }
 
     void LateUpdate()
