@@ -15,6 +15,7 @@ public class MeleeChargingPlayerState : AvarielMain
 
     public override void Enter(string previousState)
     {
+        animator.Play("AvarielSwordChargeIn");
         base.Enter(previousState);
         playerControls.swapWeaponAction.performed += SwapWeaponCallback; //fires function something;
     }

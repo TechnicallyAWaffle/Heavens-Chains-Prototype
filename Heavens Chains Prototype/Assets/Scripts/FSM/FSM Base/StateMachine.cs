@@ -17,7 +17,6 @@ public class StateMachine : MonoBehaviour
     {
         if (currentState != null)
             currentState.UpdateLogic();
-        Debug.Log(currentState.name);
     }
 
     void LateUpdate()
@@ -42,7 +41,7 @@ public class StateMachine : MonoBehaviour
     private void OnGUI()
     {
         string content = currentState != null ? currentState.stateName : "(no current state)";
-        GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
+        GUILayout.Label($"<color='white'><size=40>{content}</size></color>");
     }
 
 }

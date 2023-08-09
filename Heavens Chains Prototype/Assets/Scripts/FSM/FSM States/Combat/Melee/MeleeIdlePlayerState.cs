@@ -15,6 +15,7 @@ public class MeleeIdlePlayerState : AvarielMain
 
     public override void Enter(string previousState)
     {
+        animator.Play("AvarielIdle");
         base.Enter(previousState);
         playerControls.swapWeaponAction.performed += SwapWeaponCallback; //fires function something;
     }
@@ -37,7 +38,6 @@ public class MeleeIdlePlayerState : AvarielMain
         base.UpdateLogic();
         //State change logic -> charging
         if(playerControls.attackAction.triggered) _sm.ChangeState(_sm.meleeChargingState);
-        Debug.Log("balls");
         //State change logic -> swap to ranged
         
 

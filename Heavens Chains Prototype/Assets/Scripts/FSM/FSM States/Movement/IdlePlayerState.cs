@@ -10,7 +10,6 @@ public class IdlePlayerState : AvarielMain
 
     public void Setup(MovementSM stateMachine, string stateName) 
     {
-    
         _sm = stateMachine;
         this.stateName = stateName;
     }
@@ -18,6 +17,7 @@ public class IdlePlayerState : AvarielMain
     public override void Enter(string previousState)
     {
         base.Enter(previousState);
+        animator.Play("AvarielIdle");
     }
 
     public override void UpdateLogic()
@@ -31,5 +31,4 @@ public class IdlePlayerState : AvarielMain
         //State change logic -> Dashing
         if(playerControls.dashAction.triggered) _sm.ChangeState(_sm.dashingState);
     }
-
 }

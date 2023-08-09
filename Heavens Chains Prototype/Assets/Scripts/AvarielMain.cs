@@ -25,6 +25,7 @@ public class AvarielMain : MonoBehaviour
     protected bool flipped = false;
     protected List<GameObject> weaponList = new List<GameObject>();
     protected GameObject activeWeapon;
+    protected Animator animator;
     
     //State machine stuff
     protected Vector2 input;
@@ -87,9 +88,9 @@ public class AvarielMain : MonoBehaviour
     }
     protected mousePosition mousePos;
 
-    // Start is called before the first frame update
     void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         PlayerInput playerInput = GetComponent<PlayerInput>();
         playerControls.inputActions = new InputActionMap();

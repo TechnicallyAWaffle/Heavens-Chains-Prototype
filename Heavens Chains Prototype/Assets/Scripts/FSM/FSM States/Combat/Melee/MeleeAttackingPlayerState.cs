@@ -16,7 +16,7 @@ public class MeleeAttackingPlayerState : AvarielMain
     public override void Enter(string previousState)
     {
         base.Enter(previousState);
-        
+        animator.Play("AvarielSwordAttack");
     }
 
     public override void UpdateLogic()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c74fbf06609cee444964567924d412bc
+guid: ac06000f91649b641bafd197e033f837
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: greenmanattacksheet_0
+      name: flapanimationspritesheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e6d90f46b87a2e4f9f749041c2874b9
-      internalID: 1856838271
+      spriteID: a21233e2bc26edd409dfa0bdc910a2a1
+      internalID: -71186403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: greenmanattacksheet_1
+      name: flapanimationspritesheet_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 48
-        height: 48
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cd158e31701358419be341452f8ec1b
-      internalID: 205792486
+      spriteID: 9812b0a9ec148094bbaa1df46a6957fb
+      internalID: 557887186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: greenmanattacksheet_2
+      name: flapanimationspritesheet_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 0
-        width: 48
-        height: 48
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,41 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f8b6fc293bc83d418a70505ee89e3e1
-      internalID: 1438235708
+      spriteID: 0a85a12ff574cd641b9b77c5da07c443
+      internalID: 1894044919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: greenmanattacksheet_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca84eed4c032f0b4cb0e59d761b99890
-      internalID: 955385290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: greenmanattacksheet_4
+      name: flapanimationspritesheet_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 48
-        height: 48
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,8 +187,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f7781811d9217c4e89ecc2ceae816bf
-      internalID: 907496999
+      spriteID: ec8494b1defe7624f9356b2c593521a9
+      internalID: -608343211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flapanimationspritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd9a05b37c64a9b4aa34659953cfd891
+      internalID: 110419427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flapanimationspritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b215ebf7f57732a44ada40c4abc374bd
+      internalID: -531841474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flapanimationspritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a934ad3786cbe6642bd4a4d6f6e5c38b
+      internalID: 1805377455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flapanimationspritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55190bc77f1221541bd070c460b7ee64
+      internalID: 439447125
       vertices: []
       indices: 
       edges: []
@@ -225,11 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      greenmanattacksheet_0: 1856838271
-      greenmanattacksheet_1: 205792486
-      greenmanattacksheet_2: 1438235708
-      greenmanattacksheet_3: 955385290
-      greenmanattacksheet_4: 907496999
+      flapanimationspritesheet_0: -71186403
+      flapanimationspritesheet_1: 557887186
+      flapanimationspritesheet_2: 1894044919
+      flapanimationspritesheet_3: -608343211
+      flapanimationspritesheet_4: 110419427
+      flapanimationspritesheet_5: -531841474
+      flapanimationspritesheet_6: 1805377455
+      flapanimationspritesheet_7: 439447125
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
