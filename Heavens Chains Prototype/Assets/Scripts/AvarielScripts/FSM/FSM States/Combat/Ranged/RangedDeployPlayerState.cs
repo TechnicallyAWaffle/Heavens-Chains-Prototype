@@ -6,6 +6,7 @@ public class RangedDeployPlayerState : AvarielMain
 {
     private CombatSM _sm;
     private float counter;
+    private Transform ts;
 
     public void Setup(CombatSM stateMachine, string stateName) 
     {

@@ -23,7 +23,7 @@ public class AvarielMain : MonoBehaviour
     protected float glidePower = 50;
     protected static float defaultMoveSpeed = 7500;
     protected bool flipped = false;
-    protected List<GameObject> weaponList = new List<GameObject>();
+    protected List<GameObject> weaponList = new List<GameObject>() {null, null, null, null, null};
     protected GameObject activeWeapon;
     protected Animator animator;
     
@@ -103,6 +103,15 @@ public class AvarielMain : MonoBehaviour
         playerControls.attackAction = playerInput.actions["Attack"];
     }
 
+    void Start()
+    {
+        //weaponList.Insert(1, Resources.Load<GameObject>("Resources/Weapons/MeleeWeapons/Sword");
+        weaponList.Insert(2, Instantiate(Resources.Load<GameObject>("Weapons/RangedWeapons/Railcannon"), rb.position, Quaternion.identity, gameObject.transform));
+        Debug.Log(weaponList[2]);
+        //Replace with loop later
+
+        //weaponList[1] = Instantiate(weaponList[1], rb.position, Quaternion.identity, gameObject.transform);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -114,17 +123,21 @@ public class AvarielMain : MonoBehaviour
             mousePos.x = mouseRelative.x;
             mousePos.y = mouseRelative.y;
         }
+        if ((!mousePos.xSign() && !flipped) || (mousePos.xSign() && flipped)) flipPlayer();
     }
 
-    public GameObject SwapWeapon(string inputName)
+    public void flipPlayer()
     {
-        if (inputName == activeWeapon.name)
+        if(flipped == false)
         {
-            return null;
+            transform.localScale = new Vector3(-1, 1, 1);
+            
+            flipped = true;
         }
-        else
+        else if(flipped == true)
         {
-            return weaponList[0];
+            transform.localScale = new Vector3(1, 1, 1);
+            flipped = false;
         }
     }
 

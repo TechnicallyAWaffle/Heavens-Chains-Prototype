@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class MeleeIdlePlayerState : AvarielMain
 {
     private CombatSM _sm;
+    private string previousState;
 
     public void Setup(CombatSM stateMachine, string stateName) 
     {
@@ -15,21 +16,28 @@ public class MeleeIdlePlayerState : AvarielMain
 
     public override void Enter(string previousState)
     {
+        this.previousState = previousState;
         animator.Play("AvarielIdle");
         base.Enter(previousState);
-        playerControls.swapWeaponAction.performed += SwapWeaponCallback; //fires function something;
+        playerControls.swapWeaponAction.performed += SwapWeaponCallback;
     }
 
     //Where weapon swaps happen
     public void SwapWeaponCallback(InputAction.CallbackContext context)
     {
-        Debug.Log(context.control.name + 1);
-        GameObject weaponEquipped = SwapWeapon(context.control.name);
-        if (weaponEquipped && weaponEquipped.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
+        GameObject previousWeapon = activeWeapon;
+        activeWeapon = weaponList[int.Parse(context.control.name)];
+        if(previousWeapon.name == activeWeapon.name) 
+        {
+             if (activeWeapon.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
             {
                 _sm.ChangeState(_sm.rangedDeployState);
             }
-
+            else if (activeWeapon.GetComponent<CustomTag>().HasTag("Divine Weapon"))
+            {
+                _sm.ChangeState(_sm.meleeIdleState);
+            }
+        }
     }
 
     
@@ -37,10 +45,13 @@ public class MeleeIdlePlayerState : AvarielMain
     {
         base.UpdateLogic();
         //State change logic -> charging
-        if(playerControls.attackAction.triggered) _sm.ChangeState(_sm.meleeChargingState);
+        if(playerControls.attackAction.triggered)
+        {
+            if(previousState != "Melee-Charging")
+                _sm.ChangeState(_sm.meleeChargingState);
+            previousState = "None";
+        }
         //State change logic -> swap to ranged
-        
-
     }
 
     public override void Exit()

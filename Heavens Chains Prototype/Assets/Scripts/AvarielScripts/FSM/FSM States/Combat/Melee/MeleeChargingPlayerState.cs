@@ -23,16 +23,19 @@ public class MeleeChargingPlayerState : AvarielMain
     //Where weapon swaps happen
     public void SwapWeaponCallback(InputAction.CallbackContext context)
     {
-        Debug.Log(context.control.name + 1);
-        GameObject weaponEquipped = SwapWeapon(context.control.name);
-        if (weaponEquipped && weaponEquipped.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
+        GameObject previousWeapon = activeWeapon;
+        activeWeapon = weaponList[int.Parse(context.control.name)];
+        if(previousWeapon.name == activeWeapon.name) 
+        {
+             if (activeWeapon.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
             {
                 _sm.ChangeState(_sm.rangedDeployState);
             }
-        else if (weaponEquipped && weaponEquipped.GetComponent<CustomTag>().HasTag("Divine Weapon"))
+            else if (activeWeapon.GetComponent<CustomTag>().HasTag("Divine Weapon"))
             {
                 _sm.ChangeState(_sm.meleeIdleState);
             }
+        }
     }
     
     public override void UpdateLogic()
