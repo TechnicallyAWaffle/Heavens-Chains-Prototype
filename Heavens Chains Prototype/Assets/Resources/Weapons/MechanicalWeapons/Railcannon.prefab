@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 951453150694505338}
   - component: {fileID: 2641956316033797800}
+  - component: {fileID: 5691747720572820234}
+  - component: {fileID: 1008871394607421355}
   m_Layer: 0
   m_Name: Railcannon
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2641956316033797800
 SpriteRenderer:
@@ -39,7 +41,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5090429299294822002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -84,3 +86,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5691747720572820234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090429299294822002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05f6c4dc09b0f445a6c1844a3a787b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Mechanical Weapon
+--- !u!114 &1008871394607421355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090429299294822002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9349ee76552b848b85755f930801c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avariel: {fileID: 7189205987258443548, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+  entityShooter: {fileID: 0}

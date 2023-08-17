@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovingPlayerState : AvarielMain
+public class MovingPlayerState : BaseState
 {
     
     private MovementSM _sm;
 
-    public void Setup(MovementSM stateMachine, string stateName)
+    public MovingPlayerState(MovementSM stateMachine, AvarielMain avarielMain) :base("Moving", stateMachine, avarielMain)
     {
+        this.stateName = "Moving";
         _sm = stateMachine;
-        this.stateName = stateName;
     }
 
     public override void Enter(string previousState)
@@ -22,20 +22,20 @@ public class MovingPlayerState : AvarielMain
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        input = playerControls.moveAction.ReadValue<Vector2>();
+        input = avarielMain.playerControls.moveAction.ReadValue<Vector2>();
         if(input.sqrMagnitude == 0f) _sm.ChangeState(_sm.idleState);
 
         //State change logic -> Falling
-        if(playerControls.fallAction.triggered) _sm.ChangeState(_sm.fallingMovingState);
+        if(avarielMain.playerControls.fallAction.triggered) _sm.ChangeState(_sm.fallingMovingState);
         
         //State change logic -> Dashing
-        if(playerControls.dashAction.triggered) _sm.ChangeState(_sm.dashingState);
+        if(avarielMain.playerControls.dashAction.triggered) _sm.ChangeState(_sm.dashingState);
         
     }
 
     public override void UpdatePhysics()
     {
-        rb.AddForce(input * moveSpeed * Time.deltaTime);
+        avarielMain.rb.AddForce(input * avarielMain.moveSpeed * Time.deltaTime);
         base.UpdatePhysics();
     }
 }

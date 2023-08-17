@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedAttackingPlayerState : AvarielMain
+public class RangedAttackingPlayerState : BaseState
 {
     private CombatSM _sm;
     private float counter;
+    private string previousState;
 
-    public void Setup(CombatSM stateMachine, string stateName) 
+    public RangedAttackingPlayerState(CombatSM stateMachine, AvarielMain avarielMain) :base("Ranged-Attacking", stateMachine, avarielMain)
     {
+        this.stateName = "Ranged-Attacking";
         _sm = stateMachine;
-        this.stateName = stateName;
     }
 
     public override void Enter(string previousState)
     {
-        
         base.Enter(previousState);
+        avarielMain.activeWeapon.GetComponent<IWeaponReference>().Attack();
     }
 
     public override void UpdateLogic()

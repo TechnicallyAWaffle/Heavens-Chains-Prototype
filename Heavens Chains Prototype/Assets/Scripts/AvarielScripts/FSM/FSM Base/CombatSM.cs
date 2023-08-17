@@ -19,27 +19,16 @@ public class CombatSM : StateMachine
 
     private void Awake()
     {
-        GameObject avariel = gameObject;
-        meleeIdleState = avariel.AddComponent<MeleeIdlePlayerState>();
-        meleeIdleState.Setup(this, "Melee-Idle");
-
-        meleeChargingState = avariel.AddComponent<MeleeChargingPlayerState>();
-        meleeChargingState.Setup(this, "Melee-Charging");
-
-        meleeAttackingState = avariel.AddComponent<MeleeAttackingPlayerState>();
-        meleeAttackingState.Setup(this, "Melee-Attacking");
-
-        rangedIdleState = avariel.AddComponent<RangedIdlePlayerState>();
-        rangedIdleState.Setup(this, "Ranged-Idle");
-
-        rangedDeployState = avariel.AddComponent<RangedDeployPlayerState>();
-        rangedDeployState.Setup(this, "Ranged-Deploy");
-
-        rangedAttackingState = avariel.AddComponent<RangedAttackingPlayerState>();
-        rangedAttackingState.Setup(this, "Ranged-Attacking");
+       AvarielMain avarielMain = gameObject.GetComponent<AvarielMain>();
+        meleeIdleState = new MeleeIdlePlayerState(this, avarielMain);
+        meleeChargingState = new MeleeChargingPlayerState(this, avarielMain);
+        meleeAttackingState = new MeleeAttackingPlayerState(this, avarielMain);
+        rangedIdleState = new RangedIdlePlayerState(this, avarielMain);
+        rangedDeployState = new RangedDeployPlayerState(this, avarielMain);
+        rangedAttackingState = new RangedAttackingPlayerState(this, avarielMain);
         }
 
-    protected override AvarielMain GetInitialState()
+    protected override BaseState GetInitialState()
     {
         return meleeIdleState;
     }

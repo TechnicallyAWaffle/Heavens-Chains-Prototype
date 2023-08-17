@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    AvarielMain currentState;
+    BaseState currentState;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class StateMachine : MonoBehaviour
             currentState.UpdatePhysics();
     }
 
-    public void ChangeState(AvarielMain newState)
+    public void ChangeState(BaseState newState)
     {
         currentState.Exit();
         Debug.Log("Exiting: " + currentState.stateName + "/// Entering: " + newState.stateName);
@@ -33,7 +33,7 @@ public class StateMachine : MonoBehaviour
         currentState = newState;
     }
 
-    protected virtual AvarielMain GetInitialState()
+    protected virtual BaseState GetInitialState()
     {
         return null;
     }

@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FallingIdlePlayerState : AvarielMain
+public class FallingIdlePlayerState : BaseState
 {
     
     private MovementSM _sm;
 
-    public void Setup(MovementSM stateMachine, string stateName)
+    public FallingIdlePlayerState(MovementSM stateMachine, AvarielMain avarielMain) :base("Falling-Idle", stateMachine, avarielMain)
     {
+        this.stateName = "Falling-Idle";
         _sm = stateMachine;
-        this.stateName = stateName;
     }
 
     public override void Enter(string previousState)
     {
-        rb.gravityScale = 10;
+        avarielMain.rb.gravityScale = 10;
         base.Enter(previousState);
     }
 
@@ -25,13 +25,13 @@ public class FallingIdlePlayerState : AvarielMain
         base.UpdateLogic();
         
         //State change logic -> Falling-Moving
-        if(playerControls.moveAction.triggered) _sm.ChangeState(_sm.fallingMovingState);
+        if(avarielMain.playerControls.moveAction.triggered) _sm.ChangeState(_sm.fallingMovingState);
 
         //State change logic -> Idle
-        if(playerControls.fallAction.triggered) _sm.ChangeState(_sm.idleState);
+        if(avarielMain.playerControls.fallAction.triggered) _sm.ChangeState(_sm.idleState);
 
         //State change logic -> Gliding
-        if(playerControls.dashAction.triggered) _sm.ChangeState(_sm.glidingState);
+        if(avarielMain.playerControls.dashAction.triggered) _sm.ChangeState(_sm.glidingState);
     }
 
     public override void UpdatePhysics()
@@ -41,6 +41,6 @@ public class FallingIdlePlayerState : AvarielMain
 
     public override void Exit()
     {
-        rb.gravityScale = 0;
+        avarielMain.rb.gravityScale = 0;
     }
 }

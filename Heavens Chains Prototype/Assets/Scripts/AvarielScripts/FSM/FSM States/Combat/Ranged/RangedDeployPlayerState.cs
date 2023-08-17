@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedDeployPlayerState : AvarielMain
+public class RangedDeployPlayerState : BaseState
 {
     private CombatSM _sm;
     private float counter;
     private Transform ts;
+    private string previousState;
 
-    public void Setup(CombatSM stateMachine, string stateName) 
+    public RangedDeployPlayerState(CombatSM stateMachine, AvarielMain avarielMain) :base("Ranged-Deploy", stateMachine, avarielMain)
     {
+        this.stateName = "Ranged-Deploy";
         _sm = stateMachine;
-        this.stateName = stateName;
     }
-
     public override void Enter(string previousState)
     {
+        Debug.Log("yippeee");
+        avarielMain.activeWeapon.GetComponent<SpriteRenderer>().enabled = true;
         counter = 0;
         base.Enter(previousState);
     }
@@ -31,5 +33,7 @@ public class RangedDeployPlayerState : AvarielMain
         counter += Time.deltaTime;
     }
 
-
+    public override void Exit()
+    {
+    }
 }

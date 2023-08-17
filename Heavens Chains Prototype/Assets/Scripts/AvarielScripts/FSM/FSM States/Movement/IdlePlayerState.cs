@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class IdlePlayerState : AvarielMain
+public class IdlePlayerState : BaseState
 {
 
     private MovementSM _sm;
 
-    public void Setup(MovementSM stateMachine, string stateName) 
+    public IdlePlayerState(MovementSM stateMachine, AvarielMain avarielMain) :base("Idle", stateMachine, avarielMain)
     {
+        this.stateName = "Idle";
         _sm = stateMachine;
-        this.stateName = stateName;
     }
 
     public override void Enter(string previousState)
     {
         base.Enter(previousState);
-        animator.Play("AvarielIdle");
+        avarielMain.animator.Play("AvarielIdle");
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        if(playerControls.moveAction.triggered) _sm.ChangeState(_sm.movingState);
+        if(avarielMain.playerControls.moveAction.triggered) _sm.ChangeState(_sm.movingState);
         
         //State change logic -> Falling
-        if(playerControls.fallAction.triggered) _sm.ChangeState(_sm.fallingIdleState);
+        if(avarielMain.playerControls.fallAction.triggered) _sm.ChangeState(_sm.fallingIdleState);
 
         //State change logic -> Dashing
-        if(playerControls.dashAction.triggered) _sm.ChangeState(_sm.dashingState);
+        if(avarielMain.playerControls.dashAction.triggered) _sm.ChangeState(_sm.dashingState);
     }
 }

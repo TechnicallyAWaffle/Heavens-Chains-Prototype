@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DashingPlayerState : AvarielMain
+public class DashingPlayerState : BaseState
 {
     
     private MovementSM _sm;
     private float counter;
     private string previousState;
 
-    public void Setup(MovementSM stateMachine, string stateName)
+    public DashingPlayerState(MovementSM stateMachine, AvarielMain avarielMain) :base("Dashing", stateMachine, avarielMain)
     {
+        this.stateName = "Dashing";
         _sm = stateMachine;
-        this.stateName = stateName;
     }
 
     public override void Enter(string previousState)
     {
         counter = 0;
         this.previousState = previousState;
-        input = playerControls.moveAction.ReadValue<Vector2>();
-        rb.velocity = new Vector2(input.x * dashPower, input.y * dashPower);
+        input = avarielMain.playerControls.moveAction.ReadValue<Vector2>();
+        avarielMain.rb.velocity = new Vector2(input.x * avarielMain.dashPower, input.y * avarielMain.dashPower);
         base.Enter(previousState);
     }
 

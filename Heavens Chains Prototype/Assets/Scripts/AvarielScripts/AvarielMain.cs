@@ -7,7 +7,7 @@ public class AvarielMain : MonoBehaviour
 {
     
     //Input system actions and playerControls instantiation
-    protected struct playerActions {
+    public struct playerActions {
         public InputActionMap inputActions;
         public InputAction moveAction; // Default: WASD
         public InputAction fallAction; // Default: Shift
@@ -15,31 +15,30 @@ public class AvarielMain : MonoBehaviour
         public InputAction swapWeaponAction; //Default 1,2, etc
         public InputAction attackAction; //Default LMB
     }
-    protected playerActions playerControls;
+    public playerActions playerControls;   
 
     //Avariel player stats && misc conditions
-    protected float moveSpeed = 7500;
-    protected float dashPower = 100;
-    protected float glidePower = 50;
-    protected static float defaultMoveSpeed = 7500;
-    protected bool flipped = false;
-    protected List<GameObject> weaponList = new List<GameObject>() {null, null, null, null, null};
-    protected GameObject activeWeapon;
-    protected Animator animator;
+    public float moveSpeed = 7500;
+    public float dashPower = 100;
+    public float glidePower = 50;
+    public float defaultMoveSpeed = 7500;
+    public bool flipped = false;
+    public List<GameObject> weaponList = new List<GameObject>() {null, null, null, null, null};
+    public GameObject activeWeapon;
+    public Animator animator;
     
     //State machine stuff
-    protected Vector2 input;
-    protected StateMachine stateMachine;
-    protected Rigidbody2D rb;
-    public string stateName { get; protected set; }
+    public Vector2 input;
+    public StateMachine stateMachine;
+    public Rigidbody2D rb;
 
     //Octant enums
-    protected enum octant {
+    public enum octant {
         N = 1, NW = 2, W = 3, SW = 4, S = 5, SE = 6, E = 7, NE = 8
     }
 
     //Mouse position and octant finder struct
-    protected struct mousePosition {
+    public struct mousePosition {
         public float x; // Mouse x position
         public float y; // Mouse y position
         
@@ -86,13 +85,14 @@ public class AvarielMain : MonoBehaviour
             return (y > 0);
         }
     }
-    protected mousePosition mousePos;
+    public mousePosition mousePos;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         PlayerInput playerInput = GetComponent<PlayerInput>();
+
         playerControls.inputActions = new InputActionMap();
         playerControls.inputActions.Enable();
 
@@ -105,12 +105,12 @@ public class AvarielMain : MonoBehaviour
 
     void Start()
     {
-        //weaponList.Insert(1, Resources.Load<GameObject>("Resources/Weapons/MeleeWeapons/Sword");
-        weaponList.Insert(2, Instantiate(Resources.Load<GameObject>("Weapons/RangedWeapons/Railcannon"), rb.position, Quaternion.identity, gameObject.transform));
-        Debug.Log(weaponList[2]);
+        weaponList.Insert(1, Instantiate(Resources.Load<GameObject>("Weapons/DivineWeapons/Sword"), rb.position, Quaternion.identity, gameObject.transform));
+        weaponList.Insert(2, Instantiate(Resources.Load<GameObject>("Weapons/MechanicalWeapons/Railcannon"), rb.position, Quaternion.identity, gameObject.transform));
         //Replace with loop later
 
         //weaponList[1] = Instantiate(weaponList[1], rb.position, Quaternion.identity, gameObject.transform);
+        activeWeapon = weaponList[1];
     }
     // Update is called once per frame
     void Update()
@@ -140,9 +140,4 @@ public class AvarielMain : MonoBehaviour
             flipped = false;
         }
     }
-
-    public virtual void Enter(string previousState) {}
-    public virtual void UpdateLogic() { }
-    public virtual void UpdatePhysics() { }
-    public virtual void Exit() { }
 }

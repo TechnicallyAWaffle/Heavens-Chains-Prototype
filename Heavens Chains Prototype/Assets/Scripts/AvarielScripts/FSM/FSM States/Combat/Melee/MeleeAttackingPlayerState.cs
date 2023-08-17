@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttackingPlayerState : AvarielMain
+public class MeleeAttackingPlayerState : BaseState
 {
     private CombatSM _sm;
     private float counter;
 
-    public void Setup(CombatSM stateMachine, string stateName) 
+    public MeleeAttackingPlayerState(CombatSM stateMachine, AvarielMain avarielMain) :base("Melee-Attacking", stateMachine, avarielMain)
     {
+        this.stateName = "Melee-Attacking";
         _sm = stateMachine;
-        this.stateName = stateName;
     }
 
     public override void Enter(string previousState)
     {
         base.Enter(previousState);
-        animator.Play("AvarielSwordAttack");
+        avarielMain.animator.Play("AvarielSwordAttack");
     }
 
     public override void UpdateLogic()

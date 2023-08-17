@@ -20,27 +20,16 @@ public class MovementSM : StateMachine
 
     private void Awake()
     {
-        GameObject avariel = gameObject;
-        idleState = avariel.AddComponent<IdlePlayerState>();
-        idleState.Setup(this, "Idle");
-
-        movingState = avariel.AddComponent<MovingPlayerState>();
-        movingState.Setup(this, "Moving");
-
-        fallingIdleState = avariel.AddComponent<FallingIdlePlayerState>();
-        fallingIdleState.Setup(this, "Falling-Idle");
-
-        fallingMovingState = avariel.AddComponent<FallingMovingPlayerState>();
-        fallingMovingState.Setup(this, "Falling-Moving");
-
-        dashingState = avariel.AddComponent<DashingPlayerState>();
-        dashingState.Setup(this, "Dashing");
-
-        glidingState = avariel.AddComponent<GlidingPlayerState>();
-        glidingState.Setup(this, "Gliding");
+        AvarielMain avarielMain = gameObject.GetComponent<AvarielMain>();
+        idleState = new IdlePlayerState(this, avarielMain);
+        movingState = new MovingPlayerState(this, avarielMain);
+        fallingIdleState = new FallingIdlePlayerState(this, avarielMain);
+        fallingMovingState = new FallingMovingPlayerState(this, avarielMain);
+        dashingState = new DashingPlayerState(this, avarielMain);
+        glidingState = new GlidingPlayerState(this, avarielMain);
         }
 
-    protected override AvarielMain GetInitialState()
+    protected override BaseState GetInitialState()
     {
         return idleState;
     }
