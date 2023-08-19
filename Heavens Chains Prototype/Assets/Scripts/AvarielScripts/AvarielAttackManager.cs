@@ -3,50 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AttackManager : MonoBehaviour
+public class AttackManager : MonoBehaviour, IAttackReference
 {
     public Animator animator;
     public bool parryEnabled = false;
     public CustomTag collidee;
     private string activeWeaponScript;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    private void FixedUpdate()
-    {
-        //will properly deal with inconsistent frames for attack anim later
-    }
-
-    public void RunChargeAnimation(string trigger, string direction, GameObject activeWeapon)
-    {
-       activeWeaponScript = activeWeapon.name + "Collision";
-       animator.SetTrigger(trigger);
-       activeWeapon.GetComponent(activeWeaponScript).SendMessage((activeWeapon.name + direction + "Charge"));
-    }
-
-    public void RunDirectionalAttackAnimation(string trigger, string direction, GameObject activeWeapon)
-    {
-       Debug.Log("This is running");
-       animator.SetTrigger(trigger);
-       activeWeaponScript = activeWeapon.name + "Collision";
-       activeWeapon.GetComponent(activeWeaponScript).SendMessage((activeWeapon.name + direction + "Attack"));
-    }
-    public void RunMechanicalAttackAnimation(string trigger, GameObject activeWeapon)
-    {
-       activeWeaponScript = activeWeapon.name + "Collision";
-       animator.SetTrigger(trigger);
-       activeWeapon.GetComponent(activeWeaponScript).SendMessage((activeWeapon.name + "Firing"));
-       
-    }
+   
    
     //collidee = entity we're colliding with
     //collider = entity that called this method

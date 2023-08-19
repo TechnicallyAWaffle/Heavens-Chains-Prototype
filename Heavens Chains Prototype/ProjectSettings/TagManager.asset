@@ -18,9 +18,9 @@ TagManager:
   - 
   - 
   - CombatBoxes
-  - 
-  - 
-  - 
+  - Entities
+  - Terrain
+  - Weapons
   - 
   - 
   - 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//using BehaviorTree;
+using BehaviorTree;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     private string levelEnemiesFolder = "Entities/Enemies/" + "PreludeEnemies";
     public GameObject player;
     private GameObject previousEnemy;
-    //private float radius = 5;
+    private float radius = 5;
     private List<int> squadRanks = new List<int>{1, 2, 2, 3, 3};
 
     //Hardcoded for now. Will grab enemy data from sibling script in WorldManager in the future
@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         levelEnemies = Resources.LoadAll(levelEnemiesFolder, typeof(GameObject));
-        //StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemies());
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     //Will take a couple of parameters in the future to determine who to spawn and whatnot, including level as one of the primary ones
     //Currently ONLY loops through the list of enemies in the layer one time and spawns each one ONCE 
     
-    /*
+    
     IEnumerator SpawnEnemies()
     {
         int index = 0;
@@ -40,18 +40,14 @@ public class EnemySpawner : MonoBehaviour
             {
                 //Replace with better identifier other than enemy name. Probably custom tag? Or just another script with all enemy properties.
                 Vector3 randomEnemyPosition = origin + Random.insideUnitSphere * radius;
-                string scriptName = enemy.name + "BT";
                 GameObject currentEnemy = Instantiate(enemy, randomEnemyPosition, Quaternion.identity);
                 yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
-                if (scriptName == "GuardianAngelBT")
-                {
-                    squad.Add(currentEnemy.GetComponent<GuardianAngelBT>());
-                }
-                currentEnemy.GetComponent<GuardianAngelBT>().ConfigureEnemy(enemy.name, ref squad, squadRanks[index]);
+                IEnemyBTReference currentEnemyScript = currentEnemy.GetComponent<IEnemyBTReference>();
+                squad.Add(currentEnemyScript as BehaviorTreeBase);
+                Debug.Log(currentEnemyScript);
+                currentEnemyScript.ConfigureEnemy(enemy.name, ref squad, squadRanks[index]);
                 index++;
             }
         }
-
     }
-    */
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -309350701804587390}
   - component: {fileID: -1804529917318331942}
   - component: {fileID: -8226248581861787464}
+  - component: {fileID: 3025794426103970616}
   m_Layer: 0
   m_Name: GuardianAngel
   m_TagString: Untagged
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -148,3 +149,33 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &3025794426103970616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457894818320573423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2172ae747e93c43924521afd6993c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControls:
+    m_Name: Player Controls
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1173136a-fc32-45f8-920b-f90121fe3232
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  spriteRenderer: {fileID: 0}
+  attackManager: {fileID: 0}
+  behaviorTreeBase: {fileID: 0}
+  guardianAngelWings: {fileID: 0}
+  enemyConfig: {fileID: 0}
+  movement: {x: 0, y: 0}
+  IsAttacking: 0
+  flipped: 0
+  enemyWeapons: []
