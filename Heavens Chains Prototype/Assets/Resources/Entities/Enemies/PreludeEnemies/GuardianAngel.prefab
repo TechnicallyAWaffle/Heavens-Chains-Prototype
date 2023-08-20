@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: -1804529917318331942}
   - component: {fileID: -8226248581861787464}
   - component: {fileID: 3025794426103970616}
-  m_Layer: 0
+  - component: {fileID: -5024179054610139919}
+  m_Layer: 11
   m_Name: GuardianAngel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -390594969
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3320d69e16b93e3489da78933dff595b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -146,8 +147,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: -0.05, y: -0.15}
+  m_Size: {x: 1, y: 2.75}
   m_Direction: 0
 --- !u!114 &3025794426103970616
 MonoBehaviour:
@@ -179,3 +180,18 @@ MonoBehaviour:
   IsAttacking: 0
   flipped: 0
   enemyWeapons: []
+--- !u!114 &-5024179054610139919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457894818320573423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05f6c4dc09b0f445a6c1844a3a787b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Enemy
+  - Hurtbox

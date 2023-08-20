@@ -45,13 +45,15 @@ public class RailcannonScript : MonoBehaviour, IWeaponReference
             }
             else if(laserCollided.HasTag("Hurtbox") && laserCollided.HasTag("Enemy"))
             {
-                // New Logic
+               Debug.Log("yippee!");
             }
         }
          if(hitTerrain == false)
         {
+            Debug.Log(railcannonPosition);
+            Debug.Log(ts.right * railcannonMaxDistance);
             FireRailcannonLaser(railcannonPosition, ts.right * railcannonMaxDistance);
-            //Debug.Log("Nothing Hit");
+            Debug.Log("Nothing Hit");
         }
     }
 
@@ -67,6 +69,7 @@ public class RailcannonScript : MonoBehaviour, IWeaponReference
 
     void FireRailcannonLaser(Vector2 startPos, Vector2 endPos)
     {
+        Debug.Log("yayy!");
         railcannonLaser.enabled = true;
         railcannonLaser.SetPosition(0, startPos);
         railcannonLaser.SetPosition(1, endPos);
