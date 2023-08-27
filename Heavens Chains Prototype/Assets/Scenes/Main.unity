@@ -365,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409219844}
   m_Layer: 0
-  m_Name: Hitboxes
+  m_Name: Hurtboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,7 +610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1322529300}
   m_Layer: 10
-  m_Name: Hurtbox
+  m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -920,6 +920,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1674573024246820929, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+      propertyPath: m_Name
+      value: Hurtbox
+      objectReference: {fileID: 0}
     - target: {fileID: 2193897536057540971, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -963,6 +967,10 @@ PrefabInstance:
     - target: {fileID: 2193897536057540971, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125054494932357551, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+      propertyPath: m_Name
+      value: Hurtboxes
       objectReference: {fileID: 0}
     - target: {fileID: 7189205987258443548, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
       propertyPath: m_Name

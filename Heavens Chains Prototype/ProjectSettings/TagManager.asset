@@ -8,6 +8,7 @@ TagManager:
   - Divine Weapon
   - Hurtbox
   - Enemy
+  - Entity
   layers:
   - Default
   - TransparentFX
