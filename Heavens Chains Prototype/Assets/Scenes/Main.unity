@@ -385,6 +385,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1579911882}
+  - {fileID: 1780264758}
   m_Father: {fileID: 1883438852}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -521,6 +522,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &613265043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1674573024246820929, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+  m_PrefabInstance: {fileID: 6989044507481794292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &613265045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613265043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee842440d69620c42b84c3bb1288f0cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 0
+  strengthMultiplier: 0
 --- !u!1 &654531909
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +698,25 @@ Transform:
   m_Father: {fileID: 1601168163}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1518151394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7125054494932357551, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+  m_PrefabInstance: {fileID: 6989044507481794292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1518151396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518151394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05f6c4dc09b0f445a6c1844a3a787b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Entity
 --- !u!1 &1579911881
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +729,7 @@ GameObject:
   - component: {fileID: 1579911883}
   - component: {fileID: 1579911884}
   m_Layer: 10
-  m_Name: Hurtbox
+  m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -765,12 +804,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1579911881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee842440d69620c42b84c3bb1288f0cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f1414faaf0afc44faed73792650f3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  strength: 10
-  hurtbox: {fileID: 1579911883}
+  strength: 5
+  hitbox: {fileID: 1579911883}
 --- !u!1 &1601168162
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +961,52 @@ Transform:
   m_Father: {fileID: 1862535408}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1780264757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1780264758}
+  - component: {fileID: 1780264759}
+  m_Layer: 10
+  m_Name: Hurtboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1780264758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780264757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 370928453}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1780264759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780264757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05f6c4dc09b0f445a6c1844a3a787b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Divine Weapon
 --- !u!1 &1852311154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1149,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hurtbox
       objectReference: {fileID: 0}
+    - target: {fileID: 1674573024246820929, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2193897536057540971, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1112,6 +1201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hurtboxes
       objectReference: {fileID: 0}
+    - target: {fileID: 7125054494932357551, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7189205987258443548, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
       propertyPath: m_Name
       value: Avariel
@@ -1126,5 +1219,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2193897536057540971, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 370928453}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7125054494932357551, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1518151396}
+    - targetCorrespondingSourceObject: {fileID: 1674573024246820929, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 613265045}
   m_SourcePrefab: {fileID: 100100000, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}

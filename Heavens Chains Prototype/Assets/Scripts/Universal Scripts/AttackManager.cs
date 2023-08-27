@@ -66,6 +66,7 @@ public class AttackManager : MonoBehaviour
 
     public void HitboxCall(float damage, float strength)
     {
+        Debug.Log("dealt " + damage + " damage, dealt " + strength + " strength");
     }
 
     /*public void OnCollisionEnter2D(Collision2D entityCollisionData)

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
+    [SerializeField]
     private float damage;
+    [SerializeField]
     private float strength;
+
     public BoxCollider2D hitbox;
     private List<GameObject> blacklist = new List<GameObject>();
 
@@ -22,13 +25,15 @@ public class Hitbox : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D hitHurtbox)
     {
+        Debug.Log("TRIGGERED");
         GameObject hitHurtboxParentEntity = null;
         bool entityInBlacklist = false;
         foreach(GameObject entity in blacklist)
         {
-            if(hitHurtbox.gameObject.gameObject.GetComponent<CustomTag>().HasTag("Divine Weapon"))
+            if(hitHurtbox.gameObject.transform.parent.gameObject.GetComponent<CustomTag>().HasTag("Divine Weapon"))
             {
-                hitHurtboxParentEntity = hitHurtbox.gameObject.gameObject.gameObject.gameObject;
+                Debug.Log("is weapon");
+                hitHurtboxParentEntity = hitHurtbox.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject;
                 if(entity == hitHurtboxParentEntity)
                 {
                 entityInBlacklist = true;
@@ -36,9 +41,10 @@ public class Hitbox : MonoBehaviour
                 }
                 
             }
-            else if(hitHurtbox.gameObject.gameObject.GetComponent<CustomTag>().HasTag("Entity"))
+            else if(hitHurtbox.gameObject.transform.parent.gameObject.GetComponent<CustomTag>().HasTag("Entity"))
             {
-                hitHurtboxParentEntity = hitHurtbox.gameObject.gameObject.gameObject;
+                Debug.Log("is entity");
+                hitHurtboxParentEntity = hitHurtbox.gameObject.transform.parent.gameObject.transform.parent.gameObject;
                 if(entity == hitHurtboxParentEntity)
                 {
                 entityInBlacklist = true;
@@ -46,9 +52,11 @@ public class Hitbox : MonoBehaviour
                 }
             }
         }
-        CustomTag hitHurtboxEntityTag = hitHurtboxParentEntity.GetComponent<CustomTag>();
-        CustomTag hitHurtboxHurtboxesTag = hitHurtbox.gameObject.gameObject.GetComponent<CustomTag>();
-        GameObject hitboxParentEntity = hitbox.gameObject.gameObject.gameObject;
+        Debug.Log("ran checks");
+        //CustomTag hitHurtboxEntityTag = hitHurtboxParentEntity.GetComponent<CustomTag>();
+        CustomTag hitHurtboxHurtboxesTag = hitHurtbox.gameObject.transform.parent.gameObject.GetComponent<CustomTag>();
+        Debug.Log(hitHurtboxHurtboxesTag + "exists?");
+        GameObject hitboxParentEntity = hitbox.gameObject.transform.parent.gameObject.transform.parent.gameObject;
         if(entityInBlacklist == false && hitboxParentEntity != hitHurtboxParentEntity)
         {
             blacklist.Add(hitHurtboxParentEntity);
@@ -61,7 +69,7 @@ public class Hitbox : MonoBehaviour
                 hitboxParentEntity.GetComponent<AttackManager>().HitboxCall(damage * hurtbox.getDamageMultiplier(), strength * hurtbox.getStrengthMultiplier());
                 //hitHurtboxParentEntity, hurtboxParentEntity, damage * hitHurtbox.GetComponent<Hurtbox>().getDamageMultiplier(), strength * hitHurtbox.GetComponent<Hurtbox>().getStrengthMultiplier());
             }
-            else if(hitHurtboxHurtboxesTag.HasTag("Weapon"))
+            else if(hitHurtboxHurtboxesTag.HasTag("Divine Weapon"))
             {
                 //Debug.Log("Weapon Collision" + entityCollisionData.gameObject.name);
                 Hurtbox hurtbox = hitHurtbox.gameObject.GetComponent<Hurtbox>();
