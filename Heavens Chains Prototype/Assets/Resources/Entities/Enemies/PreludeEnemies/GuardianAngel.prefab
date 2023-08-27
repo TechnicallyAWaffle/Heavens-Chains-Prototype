@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -8226248581861787464}
   - component: {fileID: 3025794426103970616}
   - component: {fileID: -5024179054610139919}
+  - component: {fileID: 4927608580281071903}
   m_Layer: 11
   m_Name: GuardianAngel
   m_TagString: Untagged
@@ -195,3 +196,18 @@ MonoBehaviour:
   tags:
   - Enemy
   - Hurtbox
+--- !u!114 &4927608580281071903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457894818320573423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9439203d2eec51478febe96930ac013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  parryEnabled: 0
+  collidee: {fileID: 0}

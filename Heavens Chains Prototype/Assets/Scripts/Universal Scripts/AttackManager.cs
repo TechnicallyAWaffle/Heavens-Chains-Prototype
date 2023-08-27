@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AttackManager : MonoBehaviour, IAttackReference
+public class AttackManager : MonoBehaviour
 {
     public Animator animator;
     public bool parryEnabled = false;
@@ -57,6 +57,15 @@ public class AttackManager : MonoBehaviour, IAttackReference
     public void onParry()
     {
         //Debug.Log("Parry");
+    }
+
+    public void HurtboxCall()
+    {
+        
+    }
+
+    public void HitboxCall(float damage, float strength)
+    {
     }
 
     /*public void OnCollisionEnter2D(Collision2D entityCollisionData)

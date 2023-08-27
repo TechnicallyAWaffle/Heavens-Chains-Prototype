@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Mechanical Weapon
   - Divine Weapon
+  - Hurtbox
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -42,4 +44,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 624813813
+    locked: 0
+  - name: Entities
+    uniqueID: 3904372327
+    locked: 0
+  - name: Effects
+    uniqueID: 2019826645
+    locked: 0
+  - name: Weapons
+    uniqueID: 589434729
     locked: 0

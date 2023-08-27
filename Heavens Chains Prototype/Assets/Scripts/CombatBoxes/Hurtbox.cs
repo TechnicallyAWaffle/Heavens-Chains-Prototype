@@ -4,68 +4,10 @@ using UnityEngine;
 
 public class Hurtbox : MonoBehaviour
 {
-    [SerializeField] float damage;
-    [SerializeField] float strength;
-    public BoxCollider2D hurtbox;
-    private List<GameObject> blacklist = new List<GameObject>();
+    [SerializeField] float damageMultiplier;
+    [SerializeField] float strengthMultiplier;
 
-    public float getDamage(){ return damage; }
+    public float getDamageMultiplier(){ return damageMultiplier; }
 
-    public float getStrength(){ return strength; }
-
-    public void OnTriggerEnter2D(Collider2D hitHitbox)
-    {
-        GameObject hitHitboxParentEntity = null;
-        bool entityInBlacklist = false;
-        foreach(GameObject entity in blacklist)
-        {
-            if(hitHitbox.gameObject.gameObject.GetComponent<CustomTag>().HasTag("Divine Weapon"))
-            {
-                hitHitboxParentEntity = hitHitbox.gameObject.gameObject.gameObject.gameObject;
-                if(entity == hitHitboxParentEntity)
-                {
-                entityInBlacklist = true;
-                break;
-                }
-                
-            }
-            else if(hitHitbox.gameObject.gameObject.GetComponent<CustomTag>().HasTag("Entity"))
-            {
-                hitHitboxParentEntity = hitHitbox.gameObject.gameObject.gameObject;
-                if(entity == hitHitboxParentEntity)
-                {
-                entityInBlacklist = true;
-                break;
-                }
-            }
-        }
-        CustomTag hitHitboxEntityTag = hitHitboxParentEntity.GetComponent<CustomTag>();
-        CustomTag hitHitboxHitboxesTag = hitHitbox.gameObject.gameObject.GetComponent<CustomTag>();
-        GameObject hurtboxParentEntity = hurtbox.gameObject.gameObject.gameObject;
-        if(entityInBlacklist == false && hurtboxParentEntity != hitHitboxParentEntity)
-        {
-            blacklist.Add(hitHitboxParentEntity);
-            //Debug.Log("Added " + entityCollisionData.gameObject + " to blacklist");
-            //Debug.Log(">>> " + entityCollisionData.gameObject);
-            if(hitHitboxHitboxesTag.HasTag("Entity"))
-            {
-              // Debug.Log("Entity Collision" + entityCollisionData.gameObject.name);
-                hurtbox.gameObject.gameObject.gameObject.GetComponent<AttackManager>()
-                .onEntityCollide(gameObject.GetComponent<CustomTag>(), 
-                hitHitboxParentEntity, hurtboxParentEntity, damage * hitHitbox.GetComponent<Hitbox>().getDamageMultiplier(), strength * hitHitbox.GetComponent<Hitbox>().getStrengthMultiplier());
-            }
-            else if(hitHitboxHitboxesTag.HasTag("Weapon"))
-            {
-                //Debug.Log("Weapon Collision" + entityCollisionData.gameObject.name);
-                hurtbox.gameObject.gameObject.gameObject.GetComponent<AttackManager>()
-                .onEntityCollide(gameObject.GetComponent<CustomTag>(), 
-                hitHitboxParentEntity, hurtboxParentEntity, damage * hitHitbox.GetComponent<Hitbox>().getDamageMultiplier(), strength * hitHitbox.GetComponent<Hitbox>().getStrengthMultiplier());
-            }
-            else 
-            {
-                Debug.Log("Foreign Collision");
-            }
-        }
-    }
-
+    public float getStrengthMultiplier(){ return strengthMultiplier; }
 }
