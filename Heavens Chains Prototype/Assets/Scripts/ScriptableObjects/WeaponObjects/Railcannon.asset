@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4f7100dfdfacf45a7a9f4fcb519b05, type: 3}
+  m_Name: Railcannon
+  m_EditorClassIdentifier: 
+  damage: 0
+  strength: 0
+  primaryAttackAnimation: 
+  secondaryAttackAnimation: 
+  weaponObject: {fileID: 5090429299294822002, guid: 322a0f8104688434cad448707910901f, type: 3}

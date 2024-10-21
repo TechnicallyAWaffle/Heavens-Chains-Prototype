@@ -17,7 +17,7 @@ public class RangedDeployPlayerState : BaseState
     public override void Enter(string previousState)
     {
         Debug.Log("yippeee");
-        avarielMain.activeWeapon.GetComponent<SpriteRenderer>().enabled = true;
+        avarielMain.activeWeapon.weaponObject.GetComponent<SpriteRenderer>().enabled = true;
         counter = 0;
         base.Enter(previousState);
     }

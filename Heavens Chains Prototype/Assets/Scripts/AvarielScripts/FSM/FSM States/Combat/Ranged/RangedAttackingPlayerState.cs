@@ -17,7 +17,7 @@ public class RangedAttackingPlayerState : BaseState
     public override void Enter(string previousState)
     {
         base.Enter(previousState);
-        avarielMain.activeWeapon.GetComponent<IWeaponReference>().Attack();
+        avarielMain.activeWeapon.weaponObject.GetComponent<IWeaponReference>().Attack();
     }
 
     public override void UpdateLogic()

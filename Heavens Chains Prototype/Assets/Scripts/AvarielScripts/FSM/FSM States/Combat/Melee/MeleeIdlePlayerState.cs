@@ -25,15 +25,15 @@ public class MeleeIdlePlayerState : BaseState
     //Where weapon swaps happen
     public void SwapWeaponCallback(InputAction.CallbackContext context)
     {
-        GameObject previousWeapon = avarielMain.activeWeapon;
+        Weapon previousWeapon = avarielMain.activeWeapon;
         avarielMain.activeWeapon = avarielMain.weaponList[int.Parse(context.control.name)];
-        if(previousWeapon.name != avarielMain.activeWeapon.name) 
+        if(previousWeapon.weaponObject.name != avarielMain.activeWeapon.name) 
         {
-             if (avarielMain.activeWeapon.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
+             if (avarielMain.activeWeapon.weaponObject.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
             {
                 _sm.ChangeState(_sm.rangedDeployState);
             }
-            else if (avarielMain.activeWeapon.GetComponent<CustomTag>().HasTag("Divine Weapon"))
+            else if (avarielMain.activeWeapon.weaponObject.GetComponent<CustomTag>().HasTag("Divine Weapon"))
             {
                 _sm.ChangeState(_sm.meleeIdleState);
             }

@@ -4,7 +4,7 @@ using BehaviorTree;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GuardianAngelBT: BehaviorTreeBase, IEnemyBTReference
+public class GuardianAngelBT: BehaviorTreeBase, IEnemyBTReference, IDamageableReference
 {
 private Rigidbody2D rb;
     private Transform ts;
@@ -144,6 +144,27 @@ private Rigidbody2D rb;
     {   
         root.SetData<bool>(command, commandState);
     }
+
+    //--------------------------------------------------------------------
+    //DAMAGEABLE INTERFACE METHODS
+
+    public void TakeDamage(float damageAmount)
+    {
+    }
+
+    public void RecieveHealing(float healingAmount)
+    {
+    }
+
+    public void GetStunned(float stunDuration)
+    {
+    }
+
+    public void Die()
+    {
+    }
+
+    //--------------------------------------------------------------------
 
     protected override Node SetupTree()
     { 

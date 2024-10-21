@@ -24,26 +24,26 @@ public class RangedIdlePlayerState : BaseState
     {
         base.Enter(previousState);
         avarielMain.playerControls.swapWeaponAction.performed += SwapWeaponCallback; //fires function something;
-        ts = avarielMain.activeWeapon.GetComponent<Transform>();
+        ts = avarielMain.activeWeapon.weaponObject.GetComponent<Transform>();
         
     }
 
     //Where weapon swaps happen
     public void SwapWeaponCallback(InputAction.CallbackContext context)
     {
-        previousWeapon = avarielMain.activeWeapon;
+        Weapon previousWeapon = avarielMain.activeWeapon;
         avarielMain.activeWeapon = avarielMain.weaponList[int.Parse(context.control.name)];
         Debug.Log(avarielMain.activeWeapon);
         if(previousWeapon.name != avarielMain.activeWeapon.name) 
         {
-             if (avarielMain.activeWeapon.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
+             if (avarielMain.activeWeapon.weaponObject.GetComponent<CustomTag>().HasTag("Mechanical Weapon"))
             {
-                previousWeapon.GetComponent<SpriteRenderer>().enabled = false;
+                previousWeapon.weaponObject.GetComponent<SpriteRenderer>().enabled = false;
                 _sm.ChangeState(_sm.rangedDeployState);
             }
-            else if (avarielMain.activeWeapon.GetComponent<CustomTag>().HasTag("Divine Weapon"))
+            else if (avarielMain.activeWeapon.weaponObject.GetComponent<CustomTag>().HasTag("Divine Weapon"))
             {
-                previousWeapon.GetComponent<SpriteRenderer>().enabled = false;
+                previousWeapon.weaponObject.GetComponent<SpriteRenderer>().enabled = false;
                 _sm.ChangeState(_sm.meleeIdleState);
             }
         }

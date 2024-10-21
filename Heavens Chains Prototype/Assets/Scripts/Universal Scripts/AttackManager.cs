@@ -64,9 +64,20 @@ public class AttackManager : MonoBehaviour
         
     }
 
-    public void HitboxCall(float damage, float strength)
+    public void HitboxCall(float damage, float strength, GameObject recipientObject, GameObject senderEntity)
     {
         Debug.Log("dealt " + damage + " damage, dealt " + strength + " strength");
+        Debug.Log(recipientObject);
+        Vector2 direction = (recipientObject.transform.position - senderEntity.transform.position).normalized;
+        if(recipientObject.GetComponent<CustomTag>().HasTag("Entity"))
+        {
+            recipientObject.GetComponent<IDamageableReference>().TakeDamage(damage);
+            recipientObject.GetComponent<Rigidbody2D>().AddForce(direction * strength, ForceMode2D.Impulse);
+        }
+        else if(recipientObject.GetComponent<CustomTag>().HasTag("Divine Weapon"))
+        {
+            recipientObject.GetComponent<Rigidbody2D>().AddForce(direction * strength, ForceMode2D.Impulse);
+        }
     }
 
     /*public void OnCollisionEnter2D(Collision2D entityCollisionData)

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2387898774874177078}
   - component: {fileID: 3596114387462989865}
+  - component: {fileID: 1379452005114488668}
   m_Layer: 0
   m_Name: WorldManager
   m_TagString: Untagged
@@ -45,3 +46,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7189205987258443548, guid: e82a4de8ae1c3bd4399f3870ffae4ee0, type: 3}
+--- !u!114 &1379452005114488668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7008872212170957227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6804e672249c7f4c8f1b224c23d4c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalWeaponList:
+  - {fileID: 11400000, guid: fc82dd4bb9f3f1242b29123d503711a4, type: 2}
+  - {fileID: 11400000, guid: 31007942e8b33e143a31884ff48cd6e7, type: 2}

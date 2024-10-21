@@ -38,6 +38,8 @@ public class RailcannonScript : MonoBehaviour, IWeaponReference
         foreach(RaycastHit2D entityHit in results)
         {
             CustomTag laserCollided = entityHit.collider.gameObject.GetComponent<CustomTag>();
+            Debug.Log(laserCollided);
+            Debug.Log(entityHit.collider.gameObject);
             if(laserCollided.HasTag("Terrain"))
             {
                 hitTerrain = true;

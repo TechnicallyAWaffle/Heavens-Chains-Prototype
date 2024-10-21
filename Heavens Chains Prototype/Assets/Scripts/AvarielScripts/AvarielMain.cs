@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AvarielMain : MonoBehaviour
+public class AvarielMain : MonoBehaviour, IDamageableReference
 {
     
     //Input system actions and playerControls instantiation
@@ -18,19 +18,24 @@ public class AvarielMain : MonoBehaviour
     public playerActions playerControls;   
 
     //Avariel player stats && misc conditions
+    public float health = 3;
     public float moveSpeed = 7500;
     public float dashPower = 100;
     public float glidePower = 50;
     public float defaultMoveSpeed = 7500;
     public bool flipped = false;
-    public List<GameObject> weaponList = new List<GameObject>() {null, null, null, null, null};
-    public GameObject activeWeapon;
+    public List<Weapon> weaponList = new List<Weapon>() {null, null, null, null, null};
+    public Weapon activeWeapon;
     public Animator animator;
     
     //State machine stuff
     public Vector2 input;
     public StateMachine stateMachine;
     public Rigidbody2D rb;
+
+    //References
+    [SerializeField]
+    public WorldManager worldManager;
 
     //Octant enums
     public enum octant {
@@ -105,12 +110,12 @@ public class AvarielMain : MonoBehaviour
 
     void Start()
     {
-        weaponList.Insert(1, Instantiate(Resources.Load<GameObject>("Weapons/DivineWeapons/Sword"), rb.position, Quaternion.identity, gameObject.transform));
-        weaponList.Insert(2, Instantiate(Resources.Load<GameObject>("Weapons/MechanicalWeapons/Railcannon"), rb.position, Quaternion.identity, gameObject.transform));
+        weaponList.Insert(0, Instantiate(worldManager.globalWeaponList[0], rb.position, Quaternion.identity, gameObject.transform));
+        weaponList.Insert(1, Instantiate(worldManager.globalWeaponList[0], rb.position, Quaternion.identity, gameObject.transform));
         //Replace with loop later
 
         //weaponList[1] = Instantiate(weaponList[1], rb.position, Quaternion.identity, gameObject.transform);
-        activeWeapon = weaponList[1];
+        activeWeapon = weaponList[0];
     }
     // Update is called once per frame
     void Update()
@@ -139,5 +144,22 @@ public class AvarielMain : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
             flipped = false;
         }
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+
+    }
+
+    public void Die()
+    {
+    }
+
+    public void RecieveHealing(float healingAmount)
+    {
+    }
+
+    public void GetStunned(float stunDuration)
+    {
     }
 }
